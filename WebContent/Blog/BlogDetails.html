@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+<style>
+.blog1{
+	min-height:800px;
+	background-image: url('./resources/Images/blog.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid blog1" ng-controller="BlogCont as cont" ng-init="cont.ongetview()" style="padding-top:50px; opacity:0.95">
+	<div class="container">
+	<div class="jumbotron" >
+		<h3>Posted By: {{cont.blog.userid}}
+		<small> On: {{cont.blog.dt | date: dd/MM/yyyy}}</small></h3>
+		<h2>{{cont.blog.title}}</h2>
+		<p>{{cont.blog.description}}</p>
+	</div>
+	</div>
+</div>
+</body>
+</html>

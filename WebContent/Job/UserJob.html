@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container" ng-controller="JobCont as cont" ng-init="cont.getmyjobs()">
+	<div>
+		<table class="table table-stripped table-hover">
+			<thead>
+				<tr>
+					<th>Job Id</th>
+					<th>Status</th>
+					<th>Date Applied</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="myjob in cont.jobs">
+				<tr>
+					<td>{{myjob.jobid}}</td>
+					<td>{{myjob.status}}</td>
+					<td>{{myjob.dt | date}}</td>
+					<td><input type="submit" value="Job Info" class="btn btn-info btn-block" style="width: 100px"></td>
+					<td><input type="submit" value="Cancel Job" class="btn btn-warning btn-block" style="width: 100px" ng-click=""></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</body>
+</html>

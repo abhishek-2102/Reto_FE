@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Header</title>
+<style>
+.brand{
+	font-family: 'Eagle Lake';
+	font-size:30px;  
+}
+.navbar-centered {
+        position: absolute;
+        left: 40%; 						
+        text-align: center;
+    }
+</style>
+</head>
+<body> 
+ <div class="navbar navbar-default navbar-fixed-top" style="height:0px">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand brand" ui-sref="home">RETO</a>
+        </div>
+        
+        <div class="collapse navbar-collapse navbar-responsive-collapse">
+            <div class="navbar-centered">
+            <ul class="nav navbar-nav">
+                <li ng-show="currentUser.role!='Admin'"><a ui-sref="home">Home</a></li>
+                <li ng-show="currentUser.role=='Admin'"><a ui-sref="adminhome">Home for admin</a></li>
+                <li class="dropdown" ng-controller="UserCont as cont">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">Job<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                		<li ng-show="currentUser.role=='Admin'"><a ui-sref="createjob">Create Job</a></li>
+                		<li ng-show="currentUser.role=='Admin'"><a ui-sref="jobnotice">Job Notification</a></li>
+                		<li><a ui-sref="viewjob">Display Jobs</a></li>
+                	</ul>
+                </li>
+                <li class="dropdown">
+                	<a class="dropdown-toggle" data-toggle="dropdown" role="button">Blog<span class="caret"></span></a>
+                	<ul class="dropdown-menu">
+                		<li><a ui-sref="createblog">Create Blog</a></li>
+                		<li><a ui-sref="viewblog">Display Blogs</a></li>
+                	</ul>
+                </li>
+            </ul>
+            </div>
+            
+            <ul class="nav navbar-nav navbar-right" ng-controller="UserCont as cont">
+				<li class="dropdown">
+                    <a class="dropdown-toggle text-center" data-toggle="dropdown" role="button" style="width: 160px"><b ng-hide="currentUser.name">User</b> <b>{{currentUser.name}}</b><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="register"><i class="fa fa-user-plus"></i> Register</a></li>
+      					<li ng-hide="currentUser.name"><a ui-sref="login"><i class="fa fa-sign-in" ></i>   Login</a></li>
+      					<li ng-show="currentUser.name"><a href="" type="submit" ng-click="cont.logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+      					<li ng-show="currentUser.name" class="divider"></li> 
+      					<li ng-show="currentUser.name"><a ui-sref="profile" ><i class="fa fa-user-circle-o"></i> Profile</a></li> 
+      				</ul>
+                </li>
+   			 </ul>
+		</div>
+    </div>
+ </div>
+</body>
+</html>

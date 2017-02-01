@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.job{
+	min-height:800px;
+	background-image: url('./resources/Images/job.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid job" ng-controller="JobCont as cont" ng-init="cont.getalljobs()">
+<br>
+<div class="alert alert-success col-md-8 col-md-offset-2" ng-show="cont.job.code=='400'" style="opacity:0.9"><h4>{{cont.job.msg}}</h4></div>
+<div class="alert alert-warning col-md-8 col-md-offset-2" ng-show="cont.job.code=='200'" style="opacity:0.9"><h4>{{cont.job.msg}}</h4></div>
+	<div style="margin-bottom: 20px; opacity:0.95" class="col-md-6 col-md-offset-3">
+		<input class="form-control" placeholder="search for.." ng-model="showjob">
+	</div>
+	<br>
+	<div class="col-md-6 col-md-offset-3" ng-repeat="job in cont.jobs | filter : showjob">
+		<div class="panel panel-default" style="opacity:0.95">
+			<div class="panel-heading">
+				<div class="media">
+					<div class="media-body">
+					<h3 class="media-heading">{{job.title}}</h3>
+					<p><b>Job ID:</b> {{job.id}}</p>
+					</div>
+					<div class="media-right">
+					<p><b>Status:</b> {{job.status}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<h4>Qualification: <small>{{job.qualification}}</small></h4>
+				<h4>Details:<small>{{job.details}}</small></h4>
+				<h4>Last Date: <small>{{job.lastdate | date: MM/dd/yy}}</small>
+				</h4>
+			</div>
+			<div class="panel-footer">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-3" ng-show="currentUser.role=='Admin'">
+							<input class="btn btn-warning btn-block" value="Edit" type="submit" ng-click="cont.getsolojob(job.id)">
+						 </div>
+						<div class="col-md-3" ng-show="currentUser.role=='Admin'">
+							<input class="btn btn-danger btn-block" value="Delete" type="submit" ng-click="cont.deletejob(job)">
+						 </div>
+						 <div class="col-md-3" ng-hide="currentUser.role=='Admin'">
+							<input class="btn btn-success btn-block" value="Apply" type="submit" ng-click="cont.applyjob(job.id)">
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

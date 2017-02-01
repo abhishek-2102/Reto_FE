@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.blog2{
+	min-height:800px;
+	background-image: url('./resources/Images/blog.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+</head>
+<body>
+<div class="container-fluid blog2" ng-controller="BlogCont as bcont" ng-init="bcont.getallblogs()">
+	
+	<br>
+		<div class="jumbotron">
+			<label><input type="radio" name="ro" ng-model="blogsrch" value="" checked>All Blogs</label>
+      		<label><input type="radio" name="ro" ng-model="blogsrch" value="{{currentUser.id}}">My Blogs</label>
+      		<label><input type="radio" name="ro" ng-model="blogsrch" value="Admin">By Admin</label>
+      	</div>	
+      	
+  <div class="alert alert-danger col-md-8 col-md-offset-2" ng-show="bcont.delcode==400"><h4>{{bcont.delmsg}}</h4></div>
+	
+<div ng-repeat="blog in bcont.allblog | filter : blogsrch " class="col-md-8 col-md-offset-2">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="media">
+				<div class="media-left">
+    				<img ng-src="http://placehold.it/60x60" class="media-object" style="width:60px">
+ 				 </div>
+ 				 <div class="media-body">
+ 				 	<h3 class="media-heading">{{blog.userid}}</h3>
+ 				 	<p><b>Title:</b>{{blog.title}}</p>
+ 				 </div>
+			</div>
+		</div>
+		<div class="panel-body">
+			<div class="jumbotron">
+				<h3><b>Description:</b>{{blog.description}}</h3>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<p><b>Date:</b>{{blog.dt | date: dd/MM/yyyy}}</p>
+				</div>
+				<!-- <div class="col-md-3 col-md-offset-3 text-right">
+					<a href="" ng-click="bcont.moreinfo()">More info..</a>
+				</div> -->
+			</div>
+		<div class="panel-footer">
+			<div class="container-fluid">
+				<div class="row" >
+					<div class="col-md-3">
+					<!-- <a href="" type="submit" ng-click="bcont.likes()"><span title="like" class="fa fa-thumbs-o-up fa-2x" ></span></a><span title="likes" style="font-size:15px"> {{blog.likes}}</span>
+					<a href="" type="submit" ng-click="bcont.dislikes()"><span title="dislike" style="padding-left:10px" class="fa fa-thumbs-o-down fa-2x"></span></a><span title="dislikes" style="font-size:15px"> {{blog.dislikes}}</span>
+					 -->
+						<input class="btn btn-info btn-block" value="More Info" type="submit" ng-click="bcont.moreinfo(blog.id)">
+					 
+					 </div>
+					<div class="col-md-3 col-md-offset-3" ng-show="blog.userid==currentUser.id">
+						<input class="btn btn-warning btn-block" value="Edit" type="submit" ng-click="bcont.bringblog(blog.id)">
+					</div>
+					<div class="col-md-3" ng-show="blog.userid==currentUser.id">
+						<input class="btn btn-danger btn-block" value="Delete" type="submit" ng-click="bcont.delblog(blog)">
+					</div>
+				</div> 
+			</div>
+		</div>
+	</div>
+</div>
+</div> 
+	 
+	 <!-- <div class="jumbotron">
+		<h5>Date:{{blog.dt | date: dd/MM/yyyy}}</h5>
+	
+		<h3>Title:{{blog.title}}</h3>
+		
+		<p>Description:{{blog.description}}</p>
+		
+		<p>About Blog:{{blog.details}}</p>
+			<p>Likes:{{blog.likes}};Dislikes:{{blog.dislikes}}</p>
+	</div>End repeat
+	 -->
+</div><!-- End container -->
+</body>
+</html>

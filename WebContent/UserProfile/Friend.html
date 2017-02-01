@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div ng-controller="ProfCont as cont">
+	
+	<div style="margin-bottom: 20px">
+		<input class="form-control" placeholder="search for.." ng-model="userids">
+	</div>
+	
+	<div class="alert alert-warning" ng-show="cont.friendDetails.code=='400'">
+		<h3>{{cont.friendDetails.msg}}</h3>
+	</div>
+	
+			<div class="col-md-6"  style="margin-top: 20px;">
+				<div ng-init="cont.newusers()">
+					<a href="" data-toggle="collapse" data-target="#new">Add Friends<span class="caret"></span></a>			
+					<div id="new" class="collapse" style="margin-top: 20px">		
+						<div ng-repeat="user in cont.toaddusers | filter :userids">
+							<div class="row" style="margin-bottom: 10px">
+								<div class="col-md-6" style="padding-top:5px">
+								{{user}}
+								</div>
+								<div class="col-md-6">
+								<input value="Send Request" class="btn btn-info btn-block" type="submit" ng-click="cont.sendrequest(user)">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6"  style="margin-top: 20px;">
+				<div ng-init="cont.myfriend()">
+					<a href="" data-toggle="collapse" data-target="#newfriends">Friend requests<span class="caret"></span></a>			
+					<div id="newfriends" class="collapse">		
+						<div ng-repeat="user in cont.myfriends | filter :userids">
+							<div class="row" style="margin-bottom: 10px">
+								<div class="col-md-6" style="padding-top:5px" ng-if="cont.requestReceived(user.status,user.friendid,currentUser.id)">
+									<span ng-if="cont.friendName(user.friendid,currentUser.id)">{{user.friendid}}</span>
+									<span ng-if="cont.friendName(user.userid,currentUser.id)">{{user.userid}}</span>
+								</div>
+								<div class="col-md-3" ng-if="cont.requestReceived(user.status,user.friendid,currentUser.id)">
+								<input value="Accept" class="btn btn-success" type="submit" ng-click="cont.acceptfriend(user)">
+								</div>
+								<div class="col-md-3" ng-if="cont.requestReceived(user.status,user.friendid,currentUser.id)">
+								<input value="Reject" class="btn btn-danger" type="submit" ng-click="cont.cancelrequest(user)">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6"  style="margin-top: 20px;">
+				<div ng-init="cont.myfriend()">
+					<a href="" data-toggle="collapse" data-target="#myfriends">My friends<span class="caret"></span></a>			
+						<div id="myfriends" class="collapse" style="margin-top: 20px">		
+							<div ng-repeat="user in cont.myfriends | filter :userids">
+									<div class="col-md-6" style="padding-top:5px" ng-if="cont.myFriend(user.status)">
+											<span ng-if="cont.friendName(user.friendid,currentUser.id)">{{user.friendid}}</span>
+											<span ng-if="cont.friendName(user.userid,currentUser.id)">{{user.userid}}</span>
+									</div>
+									<div class="col-md-3" ng-if="cont.myFriend(user.status)">
+										<input value="Profile" class="btn btn-warning" type="submit" ng-click="">
+									</div>
+									<div class="col-md-3" ng-if="cont.myFriend(user.status)">
+										<input value="Unfriend" class="btn btn-danger" type="submit" ng-click="cont.cancelrequest(user)">
+									</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			
+			<div class="col-md-6"  style="margin-top: 20px;">
+				<div ng-init="cont.myfriend()">
+					<a href="" data-toggle="collapse" data-target="#sentfriends">Friend requests Sent<span class="caret"></span></a>			
+						<div id="sentfriends" class="collapse" style="margin-top: 20px">		
+							<div ng-repeat="user in cont.myfriends | filter :userids">	
+								<div class="row" style="margin-bottom: 10px">
+								<div class="col-md-6" style="padding-top:5px" ng-if="cont.requestSent(user.status,user.userid,currentUser.id)">
+										<span ng-if="cont.friendName(user.friendid,currentUser.id)">{{user.friendid}}</span>
+										<span ng-if="cont.friendName(user.userid,currentUser.id)">{{user.userid}}</span>
+								</div>
+								<div class="col-md-6" ng-if="cont.requestSent(user.status,user.userid,currentUser.id)">
+									<input value="Cancel Request" class="btn btn-danger btn-block" type="submit" ng-click="cont.cancelrequest(user)">
+								</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+</div>
+</body>
+</html>

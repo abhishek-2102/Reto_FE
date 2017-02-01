@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<style>
+.jobview{
+	min-height:800px;
+	background-image: url('./resources/Images/job.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+<body>
+<div class="container jobview">
+	<div class="centered-form" style="margin-top:50px" ng-controller="JobCont as cont" ng-init="cont.dispsolo()">
+		
+		<div class="alert col-md-4 col-md-offset-4 text-center" ng-show="cont.job.code=='400'">
+  			<b>{{cont.job.msg}}</b>
+		</div>
+
+		<div class="col-md-4 col-md-offset-4">
+        	<div class="panel panel-success">
+        		<div class="panel-heading">
+			    		<h3 class="panel-title text-center">Edit Job</h3>
+			 	</div>
+			 	<div class="panel-body">
+			 		<form role="form" ng-submit="cont.editj()">
+			 			<div class="form-group">
+			    			<input type="text" ng-model="cont.job.id" class="form-control input-sm" placeholder="Job ID">
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<input type="text" ng-model="cont.job.title" class="form-control input-sm" placeholder="Title">
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<input type="text" ng-model="cont.job.qualification" class="form-control input-sm" placeholder="qualification">
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<input type="text" ng-model="cont.job.status" class="form-control input-sm" placeholder="Status">
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<p>Job Details:</p>
+			    			<textarea type="text" ng-model="cont.job.details" class="form-control input-sm" style="max-width: 100%"></textarea>
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    		<p>Last Date for application:</p>
+			    			<input type="date" ng-model="cont.job.lastdate" class="form-control input-sm" >
+			    		</div>
+			    		
+			    		<div class="form-group">
+			    			<input type="submit" class="btn btn-warning btn-block" value="Edit Job">
+			    		</div>
+			    		
+			 		</form>
+			 	</div>
+			 </div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Reto</title>
+	<link rel="stylesheet" href="resources/bootstrap/bootstrap.css">
+	<script src="resources/jquery/jquery-3.1.1.js"></script>
+	<script src="resources/bootstrap/bootstrap.js"></script>
+	<link href='//fonts.googleapis.com/css?family=Eagle Lake' rel='stylesheet'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
+   	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+</head>
+
+<body ng-app="reto">
+	<div ng-include="'Header/Header.html'"></div>
+	<div ui-view style="margin-top: 50px"></div>
+</body>
+	
+	<script src="resources/js/angular.js"></script>
+<!-- 	<script src="resources/js/angular-route.js"></script> -->
+	<script src="resources/js/angular-cookies.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+	
+	<script src="reto.js"></script>
+	
+	<script src="Register/RegService.js"></script>
+	<script src="Register/RegController.js"></script>
+	
+	<script src="Admin/AdminController.js"></script>
+	<script src="Admin/AdminServices.js"></script>
+	
+	<script src="Blog/BlogServices.js"></script>
+	<script src="Blog/BlogController.js"></script>
+	
+	<script src="UserProfile/UserProfService.js"></script>
+	<script src="UserProfile/UserProfController.js"></script>
+	
+	<script src="ChatForum/ChatForumService.js"></script>
+	<script src="ChatForum/ChatForumController.js"></script>
+	
+	<script src="Job/JobService.js"></script>
+	<script src="Job/JobController.js"></script>
+	
+	
+</html>

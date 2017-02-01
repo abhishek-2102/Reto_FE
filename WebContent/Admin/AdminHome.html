@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin</title>
+
+</head>
+<body>
+<div class="container" ng-controller="AdminCont as admin" ng-init="admin.start()">
+
+<div class="row" style="margin:10px">
+	<div class="col-md-6">
+		<h4>AC=Accept, REJ=Reject, BLK=Block</h4>  
+	</div>
+	<div class="col-md-6">
+		<input class="form-control" placeholder="search" ng-model="show">
+	</div>
+</div>
+
+	<div class="radio" style="margin:25px">
+	<form>
+      <label><input type="radio" name="ro" ng-model="show" value="" checked>All</label>
+      <label><input type="radio" name="ro" ng-model="show" value="NEW">New</label>
+      <label><input type="radio" name="ro" ng-model="show" value="AC">Accepted</label>
+      <label><input type="radio" name="ro" ng-model="show" value="REJ">Rejected</label>
+      <label><input type="radio" name="ro" ng-model="show" value="BLK">Blocked</label>
+      <label><input type="radio" name="ro" ng-model="show" value="Alumni">Alumni</label>
+      <label><input type="radio" name="ro" ng-model="show" value="Student">Student</label>
+      <label><input type="radio" name="ro" ng-model="show" value="Employee">Employee</label>
+      <label><input type="radio" name="ro" ng-model="show" value="Admin">Admin</label>
+    </form>
+    </div>
+    
+<div ng-repeat="user in admin.newusers | filter: show">
+<div class="col-md-4">
+<div class="panel panel-default">
+		<div class="panel-heading text-center">
+			<img ng-src="http://placehold.it/200x200" style="margin-top:20px">
+			<h3>{{user.name}}</h3>
+		</div>
+		<div class="panel-body">
+		
+			<table class="table table-stripped">
+				<tr>
+					<th><b>Email:</b></th>
+					<td>{{user.email}}<br></td>
+				</tr>
+				<tr>
+					<th><b>User-ID:</b></th>
+					<td>{{user.id}}<br></td>
+				</tr>
+				<tr>
+					<th><b>Number:</b></th>
+					<td>{{user.ph_numb}}<br></td>
+				</tr>
+				<tr>
+					<th><b>D.O.B:</b></th>
+					<td>{{user.dob | date: 'dd-MM-yyyy'}}<br></td>
+				</tr>
+				<tr>
+					<th><b>Gender:</b></th>
+					<td>{{user.gender}}<br></td>
+				</tr>
+				<tr>
+					<th><b>Status:</b></th>
+					<td>{{user.status}}<br></td>
+				</tr>
+				<tr>
+					<th><b>Role:</b></th>
+					<td>{{user.role}}<br></td>
+				</tr>
+			</table>
+			
+			<label style="margin-bottom:10px">Change role:</label>
+			<form class="row">
+				<div class="form-group col-md-6">
+				    <select class="form-control" ng-model="change">
+				      <option ng-hide="user.role=='Admin'">Admin</option>
+				      <option ng-hide="user.role=='Student'">Student</option>
+				      <option ng-hide="user.role=='Alumni'">Alumni</option>
+				      <option ng-hide="user.role=='Employee'">Employee</option>
+					</select>
+				 </div>
+				 <div class="col-md-6">
+				 	<input type="submit" class="btn btn-default" value="Change" ng-click="admin.changeRole(user.id,change)">
+				 </div>
+			</form>
+			
+		</div>
+		<div class="panel-footer">
+			<div class="container-fluid">
+			<div class="col-md-4" style="padding:3px">
+				<input type="submit" class="btn btn-success btn-block" value="Accept" ng-click="admin.acceptUser(user.id,'AC')">
+			</div>
+			<div class="col-md-4" style="padding:3px">
+				<input type="submit" class="btn btn-warning btn-block" value="Reject" ng-click="admin.acceptUser(user.id,'REJ')">
+			</div>
+			<div class="col-md-4" style="padding:3px">
+				<input type="submit" class="btn btn-danger btn-block" value="Block" ng-click="admin.acceptUser(user.id,'BLK')">
+			</div>
+			</div>
+		</div>
+</div> 
+</div>
+</div><!-- end ng-repeat -->
+    <!-- 
+	<table class="table table-hover" style="margin:10px">
+		<thead>
+		<tr>
+			<th>Name:</th>
+			<th>Email:</th>
+			<th>User-Id:</th>
+			<th>Gender:</th>
+			<th>D.O.B:</th>
+			<th>Number:</th>
+			<th>Role:</th>
+			<th>Status:</th>
+		</tr>
+		</thead>
+		<tbody >
+		<tr>
+			<td>{{user.name}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.id}}</td>
+			<td>{{user.gender}}</td>
+			<td>{{user.dob}}</td>
+			<td>{{user.ph_numb}}</td>
+			<td>{{user.role}}</td>
+			<td>{{user.status}}</td>
+			<td><input type="submit" class="btn btn-success" value="Accept" ng-click=""></td>
+			<td><input type="submit" class="btn btn-warning" value="Reject"></td>
+			<td><input type="submit" class="btn btn-danger" value="Block"></td>
+		
+		</tr>
+		</tbody>
+	</table>
+	 -->
+</div><!-- End Container -->
+</body>
+</html>

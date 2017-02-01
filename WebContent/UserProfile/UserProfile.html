@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Profile</title>
+</head>
+<body>
+<div class="container" ng-controller="ProfCont as cont">
+<div class="row" style="margin-left: 2px; margin-bottom: 15px; margin-top: 15px">
+	
+	<div class="col-md-3" style="">
+			<img ng-src="http://placehold.it/250x250" class="media-object img-rounded">
+	</div>
+	<div class="col-md-6">
+			<br>
+			<h1 class="media-heading">{{currentUser.name}} ,<small>{{currentUser.role}}</small></h1>
+			<h3>
+			ID: {{currentUser.id}}<br>
+			Status: {{currentUser.status}}<br>
+			Gender : {{currentUser.gender}}<br>
+			D.O.B: {{currentUser.dob | date: dd/MM/yyyy}}<br>
+			Number : {{currentUser.ph_numb}}<br>
+			E-mail: {{currentUser.email}}<br>
+			</h3>
+	</div>
+	<!-- 
+	<div class="col-md-2">
+	<br><br><br>
+		<input type="submit" class="btn btn-block btn-primary" value="Edit">
+		<input type="submit" class="btn btn-block btn-danger" value="Delete">
+	</div>
+	 -->
+</div><!-- End profile view -->
+
+<div class="col-md-3">
+<ul class="nav nav-pills nav-stacked">
+  <li><a ui-sref="profile.newfriends" >Friends</a></li>
+  <li><a>Chat</a></li>
+  <li><a ui-sref="profile.chatforum">Chat Forum</a></li>
+  <li ng-hide="currentUser.role=='Admin'"><a ui-sref="profile.job">My Jobs</a></li>
+</ul>
+</div><!-- End internal navbar -->
+<div class="col-md-9 jumbotron" ui-view>
+</div>
+</div>
+</body>
+</html>

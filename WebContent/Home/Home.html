@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title></title>
+<style>
+.home { 
+    background-image: url("./resources/Images/abhihome.jpg");
+
+    min-height: 1300px; 
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.reject{
+	padding: 10px;
+    background-color: #f44336;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<div class="home" ng-controller="UserCont as cont">
+<div class="container-fluid">
+	<div ng-show="currentUser.name" ng-init="cont.getUsers()">
+		<h3>Welcome, {{currentUser.name}}</h3>
+			<div class="reject text-centered" ng-show="cont.rejmsg">
+			<h2>Your account has been rejected. Please contact the administrator.</h2>
+			</div>
+	</div><!-- end show after login -->
+</div><!-- end container fluid -->
+</div><!-- End parallax -->
+</body>
+</html>
