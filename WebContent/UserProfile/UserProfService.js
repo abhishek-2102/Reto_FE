@@ -41,5 +41,14 @@ app.factory('ProfService',['$http',function($http){
 				}
 		)//end then
 	},//end my friends
+	
+	updateProfile:function(user){
+		return $http.post(BUrl+'/update',user).then(
+				function(response){
+					return response.data
+				}//end function1
+		)//end then
+	}//end updateProfile
+	
 }//end return
 }])//end service

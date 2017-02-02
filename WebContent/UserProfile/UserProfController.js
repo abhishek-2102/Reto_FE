@@ -1,4 +1,4 @@
-app.controller('ProfCont',['ProfService',function(ProfService){
+app.controller('ProfCont',['ProfService','$location','$cookies','$rootScope',function(ProfService,$location,$cookies,$rootScope){
 	pcont=this
 	
 	pcont.requestReceived=function(status,freidnid,user){
@@ -64,6 +64,27 @@ app.controller('ProfCont',['ProfService',function(ProfService){
 		)//end then
 	}//end new users
 
+	pcont.updatepage=function(){
+		$location.path('/updateprof')
+	}//end update profile
+	
+	pcont.update=function(){
+		pcont.updateprofile(pcont.profile)
+	}//end update profile
+	
+	pcont.profile=$cookies.getObject('currentUser')
+	
+	pcont.updateprofile=function(user){
+		ProfService.updateProfile(user).then(
+				function(d){
+					$rootScope.currentUser=d
+					console.log($rootScope.currentUser)
+					$cookies.putObject('currentUser',d)
+					$location.path('/profile')
+				}
+		)//end then
+	}//end update profile
+	
 	pcont.newusers=function(){
 		ProfService.newUsers().then(
 				function(d){

@@ -99,6 +99,12 @@ app.config(function($stateProvider, $urlRouterProvider){
 		controller:'BlogCont'
 	})
 	
+	.state('updateprof',{
+		url:'/updateprof',
+		templateUrl: "UserProfile/UpdateProfile.html",
+		controller:'BlogCont'
+	})
+	
 	.state('viewblog',{
 		url:'/viewblog',
 		templateUrl: "Blog/BlogView.html",
