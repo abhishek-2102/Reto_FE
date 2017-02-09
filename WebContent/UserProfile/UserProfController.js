@@ -1,6 +1,5 @@
 app.controller('ProfCont',['ProfService','$location','$cookies','$rootScope',function(ProfService,$location,$cookies,$rootScope){
 	pcont=this
-	
 	pcont.requestReceived=function(status,freidnid,user){
 		if(status=='New'&& freidnid==user){
 			return true
@@ -25,6 +24,16 @@ app.controller('ProfCont',['ProfService','$location','$cookies','$rootScope',fun
 		}return true
 	}//end friend name function
 	//===================================================
+	
+	pcont.reload=function(string){
+		
+	}
+	
+	pcont.imageupload=function(){
+		var photo=pcont.userPhoto
+		ProfService.imageUpload(photo)
+		pcont.reload()
+	}//end image upload
 	
 	pcont.sendrequest=function(friendid){
 		ProfService.sendRequest(friendid).then(

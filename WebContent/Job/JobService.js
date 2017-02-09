@@ -68,6 +68,7 @@ app.factory('JobService',['$http',function($http){
 		},//end all job applied
 		
 		updateStatus:function(job){
+			console.log(job)
 			return $http.post(BUrl+'/updatestatus',job).then(
 					function(response){
 						return response.data

@@ -3,7 +3,7 @@ app.controller('UserCont',['UserService','$location','$rootScope','$cookies',fun
 	$rootScope.currentUser=$cookies.getObject('currentUser')
 	ucont=this
 	ucont.users=[]
-	ucont.user={id:"", name:"",email:"",password:"",ph_numb:"",status:"",role:"",reason:"",is_online:"",gender:"",dob:"",code:"",msg:""};
+	ucont.user={id:"", name:"",email:"",password:"",ph_numb:"",status:"",role:"",reason:"",is_online:"",gender:"",dob:"",code:"",msg:"",img:""};
 	
 	ucont.getUsers=function(){
 		UserService.getAllUsers().then(

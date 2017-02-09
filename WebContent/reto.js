@@ -112,6 +112,21 @@ app.config(function($stateProvider, $urlRouterProvider){
 	})
 })//end app.config
 
+app.directive('uploadPhoto',['$parse',function($parse){
+	return{
+		restrict:'A',
+		link:function(scope,element,attrs){
+			var model=$parse(attrs.uploadPhoto);
+			var modelSetter=model.assign;
+			element.bind('change',function(){
+				scope.$apply(function(){
+					modelSetter(scope,element[0].files[0]);
+				})//end apply
+			})//end bind
+		}//end link
+	}//end return
+}])//end directive
+
 app.run(function($rootScope,$location,$http,$state,$cookies){
  
  $rootScope.$on('$locationChangeStart',function(event,next,current){
@@ -123,11 +138,10 @@ app.run(function($rootScope,$location,$http,$state,$cookies){
       
   if(typeof logged=='undefined'){
    if(restrictedPage){
-	
-   }
+	}
    else{
     $location.path('/login')
     $state.go('login')}
   }
  })
-})
+})//end angular security

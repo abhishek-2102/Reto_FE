@@ -29,7 +29,11 @@ textarea {
 <body>
 <div class="container-fluid blog" ng-controller="BlogCont as bcont">
 	<h3 class="text-center" style="padding:5px 0px 15px 0px">Create a new Blog</h3>
-	<div class="alert alert-success" ng-show="bcont.blog.code=='400'"><h4>{{bcont.blog.msg}}</h4></div>
+	<div class="row">
+	<div class="col-sm-6 col-sm-offset-3 alert alert-success" ng-show="bcont.blog.code=='400'">
+		<h4>{{bcont.blog.msg}}</h4>
+	</div>
+	</div>
 	<form class="form-horizontal" ng-submit="bcont.submitb()">
 		 <div class="form-group">
 		    <label class="control-label col-sm-3" style="padding-top: 15px">Title:</label>

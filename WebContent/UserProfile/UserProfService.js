@@ -48,7 +48,24 @@ app.factory('ProfService',['$http',function($http){
 					return response.data
 				}//end function1
 		)//end then
-	}//end updateProfile
+	},//end updateProfile
+	
+	imageUpload:function(photo){
+		var form=new FormData();
+		form.append('photo',photo)
+		$http.post(BUrl+'/uploadimage',form,{
+			withCredentials:false,
+			headers:{
+				'Content-type':undefined
+			},
+			transformRequest:angular.identity,
+			responseType: "arraybuffer"
+		}).success(function(){
+			console.log('Image Successully uploaded')
+		}).error(function(){
+			console.log('Error')
+		})
+	}//end image upload
 	
 }//end return
 }])//end service

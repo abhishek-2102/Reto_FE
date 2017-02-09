@@ -16,14 +16,14 @@
 </head>
 <body>
 <div class="container-fluid blog2" ng-controller="BlogCont as bcont" ng-init="bcont.getallblogs()">
-	
-	<br>
+<br>
+	<div class="col-md-8 col-md-offset-2">
 		<div class="jumbotron">
 			<label><input type="radio" name="ro" ng-model="blogsrch" value="" checked>All Blogs</label>
       		<label><input type="radio" name="ro" ng-model="blogsrch" value="{{currentUser.id}}">My Blogs</label>
       		<label><input type="radio" name="ro" ng-model="blogsrch" value="Admin">By Admin</label>
       	</div>	
-      	
+    </div>  	
   <div class="alert alert-danger col-md-8 col-md-offset-2" ng-show="bcont.delcode==400"><h4>{{bcont.delmsg}}</h4></div>
 	
 <div ng-repeat="blog in bcont.allblog | filter : blogsrch " class="col-md-8 col-md-offset-2">
@@ -31,8 +31,8 @@
 		<div class="panel-heading">
 			<div class="media">
 				<div class="media-left">
-    				<img ng-src="http://placehold.it/60x60" class="media-object" style="width:60px">
- 				 </div>
+    				<img style="height:60px; width: 60px" ng-src="./resources/Images/{{blog.userid}}.jpg" class="img-rounded">
+				</div>
  				 <div class="media-body">
  				 	<h3 class="media-heading">{{blog.userid}}</h3>
  				 	<p><b>Title:</b>{{blog.title}}</p>

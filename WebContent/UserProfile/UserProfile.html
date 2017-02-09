@@ -6,14 +6,14 @@
 </head>
 <body>
 <div class="container" ng-controller="ProfCont as cont">
-<div class="row" style="margin-left: 2px; margin-bottom: 15px; margin-top: 15px">
-	
-	<div class="col-md-3" style="">
-			<img ng-src="http://placehold.it/250x250" class="media-object img-rounded">
+<div class="row" style="margin-left: 2px; margin-bottom: 15px; margin-top: 15px" ng-init="cont.reload()">
+	<div class="alert alert-success" ng-show="cont.photomsg">Image Successfully uploaded</div>
+	<div class="col-md-3">
+			<img ng-src="http://placehold.it/250x250" class="media-object img-rounded" ng-show="!currentUser.img">
+			<img style="height:250px; width: 250px" ng-src="./resources/Images/{{currentUser.id}}.jpg" class="media-object img-rounded" ng-show="currentUser.img">
 	</div>
 	<div class="col-md-6">
-			<br>
-			<h1 class="media-heading">{{currentUser.name}} ,<small>{{currentUser.role}}</small></h1>
+			<h2 class="media-heading">{{currentUser.name}} ,<small>{{currentUser.role}}</small></h2>
 			<h3>
 			ID: {{currentUser.id}}<br>
 			Status: {{currentUser.status}}<br>
@@ -22,11 +22,20 @@
 			Number : {{currentUser.ph_numb}}<br>
 			E-mail: {{currentUser.email}}<br>
 			</h3>
-		
+			
+			<div ng-show="showTag" class="input-group">
+					<div class="input-group-addon">
+					<input type="file" upload-photo="cont.userPhoto">
+					</div>
+					<div class="input-group-btn" style="height: 25px">
+					<input type="submit" class="btn btn-info" value="Upload" ng-click="cont.imageupload()">
+					</div>
+			</div>
 	</div>
 	<div class="col-md-2 col-offset-3">
 		<input type="submit" class="btn btn-warning btn-block" value="Edit Profile" ng-click="cont.updatepage()">
-		<input type="submit" class="btn btn-danger btn-block" value="Delete Profile" ng-click="">
+		<input type ="submit" class="btn btn-info btn-block" ng-click="showTag = !showTag" value="Update Photo">
+
 	</div>
 	<!-- 
 	<div class="col-md-2">
@@ -36,11 +45,9 @@
 	</div>
 	 -->
 </div><!-- End profile view -->
-
 <div class="col-md-3">
 <ul class="nav nav-pills nav-stacked">
   <li><a ui-sref="profile.newfriends" >Friends</a></li>
-  <li><a>Chat</a></li>
   <li><a ui-sref="profile.chatforum">Chat Forum</a></li>
   <li ng-hide="currentUser.role=='Admin'"><a ui-sref="profile.job">My Jobs</a></li>
 </ul>

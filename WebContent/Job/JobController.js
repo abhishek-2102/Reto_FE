@@ -87,7 +87,7 @@ app.controller('JobCont',['JobService','$location','$q',function(JobService,$loc
 	jcont.updatestatus=function(job,string){
 		job.status=string
 		console.log(job.status)
-		JobServie.updateStatus(job).then(
+		JobService.updateStatus(job).then(
 				function(d){
 					jcont.alljobsapplied()
 				}
